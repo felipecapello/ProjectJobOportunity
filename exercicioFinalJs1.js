@@ -18,19 +18,19 @@ function cadastrarVaga(){
     vagaNome = prompt("Digite o nome da vaga")
     vagaDescricao = prompt("Digite a descrição da vaga") 
     vagaDataLimite = prompt("Digite a data limite da vaga")
-    vagaCandidato
 
     const confirmacao = confirm(
         "Deseja confirmar essas informações: \n" +
-        "Nome: " + vaga.nome + "\n" +
-        "Descrição: " + vaga.descricao + "\n" +
-        "Data Limite: " + vaga.dataLimite + "\n"   
+        "Nome: " + vagaNome + "\n" +
+        "Descrição: " + vagaDescricao + "\n" +
+        "Data Limite: " + vagaDataLimite + "\n"   
     )
 
     if(confirmacao) {
-        const vaga = {v}
+        const cadastrarVaga = {vagaNome, vagadescricao, vagaDataLimite, vagaCandidato: []}
+        vagas.push(cadastrarVaga)
     }
-
+        
 }
 
 function cadastrarCandidato(){
@@ -66,16 +66,16 @@ do {
         
 
         case "1":
-        listarVaga();  
+        listarVaga() 
         break
         case "2":
-        cadastrarVaga();
+        cadastrarVaga()
         break
         case "3":
-        visualizarVaga();  
+        visualizarVaga()
         break  
         case "4":
-        cadastrarCandidato();
+        cadastrarCandidato()
         break
         case "5":
         case "6":
