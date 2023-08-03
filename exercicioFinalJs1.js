@@ -1,12 +1,11 @@
-vagas = []
-vaga = {}
+const vagas = []
 candidato = {}
 
 function listarVaga(){
 
     // transformar o conteudo de vagas em um variavel de string para ser informada de forma mais facil
     const vagasEmTexto = vagas.reduce(function(textoFinal, vaga, indice){
-        textoFinal += indice + " -\n " + vaga.nome + "Quantidade de candidatos: " + vaga.canditato.lenght
+        textoFinal += indice + " -\n " + vaga.vagaNome + " \n Quantidade de candidatos: " + vaga.candidatoNome.lenght
         return textoFinal
     }, "")
 
@@ -27,18 +26,27 @@ function cadastrarVaga(){
     )
 
     if(confirmacao) {
-        const cadastrarVaga = {vagaNome, vagadescricao, vagaDataLimite, vagaCandidato: []}
+        const cadastrarVaga = {vagaNome, vagaDescricao, vagaDataLimite, vagaCandidato: []}
         vagas.push(cadastrarVaga)
-    }
-        
+    }  
 }
 
 function cadastrarCandidato(){
-    candidato.nome = prompt("Digite o nome do candidato")
-    candidato.indiceVaga = prompt("Digite o indice da vaga desejada")
-    for(i=0; i<vagas.lenght; i++){
-        vaga.candidato[i].push(candidato)
-        alert(vaga.candidato[i])
+
+    candidatoNome = prompt("Digite o nome do candidato")
+    candidatoIndiceVaga = prompt("Digite o indice da vaga desejada")
+    const vaga = vagas[candidatoIndiceVaga]
+
+    const confirmacao = confirm(
+        "Deseja confirmar as informações abaixo: \n" +
+        "Candidato: " + vaga.vagaCandidato == candidatoNome + "\n" +
+        "Vaga: " + vaga.vagaNome + "\n" +
+        "Descrição: " + vaga.vagaDescricao + "\n" +
+        "Data Limite: " + vagaDataLimite
+    )
+
+    if(confirmacao){
+        const cadastrarVaga = {vagaNome, vagaDescricao, vagaDataLimite, candidatoNome}
     }
 }
 
@@ -66,16 +74,16 @@ do {
         
 
         case "1":
-        listarVaga() 
-        break
+         listarVaga() 
+         break
         case "2":
-        cadastrarVaga()
-        break
+         cadastrarVaga()
+         break
         case "3":
-        visualizarVaga()
-        break  
+         visualizarVaga()
+         break  
         case "4":
-        cadastrarCandidato()
+         cadastrarCandidato()
         break
         case "5":
         case "6":
