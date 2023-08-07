@@ -1,16 +1,20 @@
 const vagas = []
-candidato = {}
 
 function listarVaga(){
 
     // transformar o conteudo de vagas em um variavel de string para ser informada de forma mais facil
     const vagasEmTexto = vagas.reduce(function(textoFinal, vaga, indice){
-        textoFinal += indice + " -\n " + vaga.vagaNome + " \n Quantidade de candidatos: " + vaga.candidatoNome.lenght
+        textoFinal += indice + " -  "
+        textoFinal += vaga.vagaNome  + ", "
+        textoFinal += vaga.vagaCandidato.length + "\n"
         return textoFinal
+        
     }, "")
 
     alert(vagasEmTexto)
 }
+
+
 
 function cadastrarVaga(){
     
@@ -26,27 +30,28 @@ function cadastrarVaga(){
     )
 
     if(confirmacao) {
-        const cadastrarVaga = {vagaNome, vagaDescricao, vagaDataLimite, vagaCandidato: []}
+        const cadastrarVaga = {vagaNome, vagaDescricao, vagaDataLimite, vagaCandidato: [] }
         vagas.push(cadastrarVaga)
     }  
 }
 
 function cadastrarCandidato(){
 
-    candidatoNome = prompt("Digite o nome do candidato")
-    candidatoIndiceVaga = prompt("Digite o indice da vaga desejada")
-    const vaga = vagas[candidatoIndiceVaga]
+   const candidato = prompt("Digite o nome do candidato")
+   const indice = prompt("Digite o indice da vaga desejada")
+   const vaga = vagas[indice]
 
     const confirmacao = confirm(
         "Deseja confirmar as informações abaixo: \n" +
-        "Candidato: " + vaga.vagaCandidato == candidatoNome + "\n" +
+        "Candidato: " + candidato + "\n" +
         "Vaga: " + vaga.vagaNome + "\n" +
         "Descrição: " + vaga.vagaDescricao + "\n" +
-        "Data Limite: " + vagaDataLimite
+        "Data Limite: " + vaga.vagaDataLimite
     )
 
     if(confirmacao){
-        const cadastrarVaga = {vagaNome, vagaDescricao, vagaDataLimite, candidatoNome}
+        vaga.vagaCandidato.push(candidato)
+        console.log(vaga.vagaCandidato)
     }
 }
 
@@ -54,18 +59,14 @@ function visualizarVaga(){
 
     indice = prompt("Digite o indice da vaga que deseja exibir: ")
     const vagaCandidato = vagas[indice]
-
-
-    
-                indice + '\n' +
-                vaga.nome + "\n" +
-                vaga.descricao + "\n" +
-                vaga.dataLimite + "\n" +
-                vaga.candidato + "\n" +
-                candidato.nome 
+    alert(
+            indice + '\n' +
+            vaga.nome + "\n" +
+            vaga.descricao + "\n" +
+            vaga.dataLimite + "\n" +
+            vaga.vagaCandidato.length + "\n" +
+            vaga.vagaCandidato )
         }
-
-
 
 do {
     choice = prompt("Digite a opção que deseja: \n 1 - Listar vagas disponíveis \n 2 - Criar uma nova vaga \n 3 - Visualizar uma vaga \n 4 - Inscrever um candidado em uma vaga \n 5 - Excluir uma vaga \n 6 - Sair ") 
