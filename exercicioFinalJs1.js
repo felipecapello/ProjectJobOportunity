@@ -14,8 +14,6 @@ function listarVaga(){
     alert(vagasEmTexto)
 }
 
-
-
 function cadastrarVaga(){
     
     vagaNome = prompt("Digite o nome da vaga")
@@ -58,15 +56,39 @@ function cadastrarCandidato(){
 function visualizarVaga(){
 
     indice = prompt("Digite o indice da vaga que deseja exibir: ")
-    const vagaCandidato = vagas[indice]
+
+    const vaga = vagas[indice]
+
+    candidatosEmTextos = vaga.vagaCandidato.reduce(function(ValorFinal, candidato){
+        return ValorFinal + candidato
+    }, "")
+
     alert(
             indice + '\n' +
-            vaga.nome + "\n" +
-            vaga.descricao + "\n" +
-            vaga.dataLimite + "\n" +
+            vaga.vagaNome + "\n" +
+            vaga.vagaDescricao + "\n" +
+            vaga.vagaDataLimite + "\n" +
             vaga.vagaCandidato.length + "\n" +
-            vaga.vagaCandidato )
+            candidatosEmTextos
+        )
         }
+
+function excluirVaga(){
+    indice = prompt("Digite o indice da vaga que deseja excluir")
+    const vaga = vagas[indice]
+
+    const confirmacao = confirm(
+        "Deseja deletar a vaga respectiva: \n" + indice +'\n' +
+        vaga.vagaNome + "\n" +
+        vaga.vagaDescricao + "\n" +
+        vaga.vagaDataLimite + "\n" 
+    )
+    if(confirmacao){
+        vagas.splice(indice, 1) // Deletar uma vaga a partir do indice 
+        alert("Vaga Excluida")
+    }
+
+}
 
 do {
     choice = prompt("Digite a opção que deseja: \n 1 - Listar vagas disponíveis \n 2 - Criar uma nova vaga \n 3 - Visualizar uma vaga \n 4 - Inscrever um candidado em uma vaga \n 5 - Excluir uma vaga \n 6 - Sair ") 
@@ -87,6 +109,8 @@ do {
          cadastrarCandidato()
         break
         case "5":
+        excluirVaga() 
+        break   
         case "6":
             alert("Saindo do sistema")
 
